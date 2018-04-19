@@ -1,32 +1,23 @@
 var BillControllerModule = (function(){
 	
 	var sendInfo = function(){
-		/*axios({
-			method: 'post',
-			url: '/bills',
-			data: {
-				"id": document.getElementById('idFactura').value
-			}
-		})*/
 		axios.post('/bills', {"id":document.getElementById('idFactura').value})
 		.then(function(response){
-			location.href='/response.html';
-		})
-		.catch(function(error){
-			console.log(error);
-		});
-	}
-	
-	/*var loadResponse = function () {
-		axios.get('/square?value='+window.location.search.substring(1).split('=')[1])
-		.then(function(response){
-			document.getElementById('response').innerHTML = response.data;
+			console.log("Response status: "+ response.status);
+			document.getElementById("botonDescarga").style.visibility = "visible";
 		})
 		.catch(function(error){
 			console.log(error);
 		});
 		
-	} */
+		var formContainer = document.getElementById("mainContainer");
+		formContainer.removeChild(document.getElementById("billForm"));
+		
+		
+		document.getElementById("tituloPrincipal").innerHTML = "Factura generada";
+		document.getElementById("instruccionesPagina").innerHTML = "Para descargar de clic en el siguiente link";
+	}
+	
 
 	return {
 		sendInfo: sendInfo

@@ -7,6 +7,7 @@ package co.edu.escuelaing.arem.dianfacturaelectronica.restcontrollers;
 
 import co.edu.escuelaing.arem.dianfacturaelectronica.model.Bill;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -30,17 +31,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/bills")
 public class ApiController {
 
-    public static final String HEROKU_LINK = "falta.herokuapp.com?id={id}";
+    public static final String HEROKU_LINK = "https://restapidianform.herokuapp.com/bill?id={id}";
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> addOrder(@RequestBody Bill bill) {
         try {
             String alteredHerokuLink = HEROKU_LINK.replace("{id}", bill.getId() + "");
-            //URL link = new URL(alteredHerokuLink);
+            URL link = new URL(alteredHerokuLink);
 
-            PrintWriter writer = new PrintWriter("bill.json");
-            writer.println("ITS WORKING");
-            /*try (BufferedReader reader
+            File file = new File("target/classes/static/bill.json");
+            file.getParentFile().mkdirs();
+            
+            PrintWriter writer = new PrintWriter(file);
+            //writer.println(bill.getId());
+            try (BufferedReader reader
                     = new BufferedReader(new InputStreamReader(link.openStream()))) {
                 String inputLine = null;
                 while ((inputLine = reader.readLine()) != null) {
@@ -48,7 +52,7 @@ public class ApiController {
                 }
             } catch (IOException x) {
                 System.err.println(x);
-            }*/
+            }
             writer.close();
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
