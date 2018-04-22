@@ -48,8 +48,33 @@
                     <h2 id="instruccionesPagina"class="masthead-subheading mb-0">Ingrese los siguientes datos:</h2>
                     <form id="billForm">
                         <div class="form-group">
-                            <label for="idFactura">Numero de factura</label>
-                            <input type="number" class="form-control" id="idFactura" placeholder="digite el numero de la factura">
+                            <label for="nameEmployee">Nombre del empleado</label>
+                            <input type="text" class="form-control" id="nameEmployee" placeholder="">
+							
+							<label for="idEmployee">Identificacion del empleado</label>
+                            <input type="number" class="form-control" id="idEmployee" placeholder="">
+							
+							<label for="companysNit">Nit de la empresa</label>
+                            <input type="number" class="form-control" id="companysNit" placeholder="">
+							
+							<label for="companysPhone">Telefono de la empresa</label>
+                            <input type="number" class="form-control" id="companysPhone" placeholder="">
+							
+							<label for="consumerName">Nombre del consumidor</label>
+                            <input type="text" class="form-control" id="consumerName" placeholder="">
+							
+							<label for="consumerId">Identificacion del consumidor</label>
+                            <input type="number" class="form-control" id="consumerId" placeholder="">
+							
+							<label for="consumerPhone">Telefono del consumidor</label>
+                            <input type="number" class="form-control" id="consumerPhone" placeholder="">
+							
+							<label for="consumerEmail">Correo electronico del consumidor</label>
+                            <input type="text" class="form-control" id="consumerEmail" placeholder="">
+							
+							<label for="purchasePrice">Precio de la compra</label>
+                            <input type="number" class="form-control" id="purchasePrice" placeholder="">
+							
                         </div>
                         
                         <button type="submit" class="btn btn-primary" onclick="BillControllerModule.sendInfo();">Enviar</button>

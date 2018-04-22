@@ -6,12 +6,17 @@
 package co.edu.escuelaing.arem.dianfacturaelectronica.restcontrollers;
 
 import co.edu.escuelaing.arem.dianfacturaelectronica.model.Bill;
+import static co.edu.escuelaing.arem.dianfacturaelectronica.model.Bill.IVA_PERCENTAGE;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.http.HttpStatus;
@@ -31,17 +36,37 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/bills")
 public class ApiController {
 
-    public static final String HEROKU_LINK = "https://restapidianform.herokuapp.com/bill?id={id}";
+    private static int idBill = 1;
 
+    public static final String HEROKU_LINK = "https://restapidianform.herokuapp.com/bill?";
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> addOrder(@RequestBody Bill bill) {
         try {
-            String alteredHerokuLink = HEROKU_LINK.replace("{id}", bill.getId() + "");
-            URL link = new URL(alteredHerokuLink);
+            bill.setIvaPrice((bill.getPurchasePrice() * Bill.IVA_PERCENTAGE) / 100);
+            bill.setId(idBill);
+            bill.setDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime()));
+            bill.setTotal(bill.getPurchasePrice() + bill.getIvaPrice());
+            String herokuQueryLink = "id="+bill.getId()
+                    +"&date="+bill.getDate()
+                    +"&nameEmployee="+bill.getNameEmployee()
+                    +"&idEmployee="+bill.getIdEmployee()
+                    +"&companysNit="+bill.getCompanysNit()
+                    +"&companysPhone="+bill.getCompanysPhone()
+                    +"&consumerName="+bill.getConsumerName()
+                    +"&consumerId="+bill.getConsumerId()
+                    +"&consumerPhone="+bill.getConsumerPhone()
+                    +"&consumerEmail="+bill.getConsumerEmail()
+                    +"&purchasePrice="+bill.getPurchasePrice()
+                    +"&ivaPercentage="+Bill.IVA_PERCENTAGE
+                    +"&ivaPrice="+bill.getIvaPrice()
+                    +"&total="+bill.getTotal();
+            
+            idBill++;
+            URL link = new URL(HEROKU_LINK+herokuQueryLink.replace("/", "%2f").replace(" ", "%20").replace(":", "%3a"));
 
             File file = new File("target/classes/static/bill.json");
             file.getParentFile().mkdirs();
-            
+
             PrintWriter writer = new PrintWriter(file);
             //writer.println(bill.getId());
             try (BufferedReader reader

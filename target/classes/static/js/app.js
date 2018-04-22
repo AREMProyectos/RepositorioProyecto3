@@ -1,7 +1,18 @@
 var BillControllerModule = (function(){
 	
 	var sendInfo = function(){
-		axios.post('/bills', {"id":document.getElementById('idFactura').value})
+		axios.post('/bills', {
+								"nameEmployee":document.getElementById('nameEmployee').value,
+								"idEmployee":document.getElementById('idEmployee').value,
+								"companysNit":document.getElementById('companysNit').value,
+								"companysPhone":document.getElementById('companysPhone').value,
+								"consumerName":document.getElementById('consumerName').value,
+								"consumerId":document.getElementById('consumerId').value,
+								"consumerPhone":document.getElementById('consumerPhone').value,
+								"consumerEmail":document.getElementById('consumerEmail').value,
+								"purchasePrice":document.getElementById('purchasePrice').value
+								
+							})
 		.then(function(response){
 			console.log("Response status: "+ response.status);
 			document.getElementById("botonDescarga").style.visibility = "visible";
