@@ -5,15 +5,20 @@
  */
 package co.edu.escuelaing.arem.dianfacturaelectronica.security;
 
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author andres
  */
+@Service
 public class securityGuard implements Guard{
 
+
     @Override
-    public void requestAction() throws SecurityException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void authenticate(RequestAction ra) throws SecurityException {
+        System.out.println(ra.getPasswd());
+       
     }
     
 }

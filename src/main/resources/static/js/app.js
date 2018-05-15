@@ -1,7 +1,7 @@
 var BillControllerModule = (function(){
 	
 	var sendInfo = function(){
-		axios.post('/bills', {
+		axios.post('/sesion/bills', {
 								"nameEmployee":document.getElementById('nameEmployee').value,
 								"idEmployee":document.getElementById('idEmployee').value,
 								"companysNit":document.getElementById('companysNit').value,
@@ -28,9 +28,27 @@ var BillControllerModule = (function(){
 		document.getElementById("tituloPrincipal").innerHTML = "Factura generada";
 		document.getElementById("instruccionesPagina").innerHTML = "Para descargar de clic en el siguiente link";
 	}
-	
+
+	var sendCredentials = function(){
+		var passwd = CryptoJS.AES.encrypt(document.getElementById('passwd').value, "drwQhwnzvdmi@x09");
+		alert(passwd);
+		axios.post('/sesion',{
+								"userName":document.getElementById('userName').value,
+								"passwd":passwd
+		})
+		.then(function(response){
+			console.log("Response status: "+ response.status);
+		})
+		.catch(function(error){
+			console.log(error);
+		});
+		
+	}
 
 	return {
-		sendInfo: sendInfo
+		sendInfo: sendInfo,
+		sendCredentials: sendCredentials
 	};
+
+	
 })();

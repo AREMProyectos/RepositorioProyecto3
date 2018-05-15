@@ -7,6 +7,8 @@ package co.edu.escuelaing.arem.dianfacturaelectronica.restcontrollers;
 
 import co.edu.escuelaing.arem.dianfacturaelectronica.model.Bill;
 import static co.edu.escuelaing.arem.dianfacturaelectronica.model.Bill.IVA_PERCENTAGE;
+import co.edu.escuelaing.arem.dianfacturaelectronica.security.Guard;
+import co.edu.escuelaing.arem.dianfacturaelectronica.security.RequestAction;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +21,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -33,13 +36,17 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Service
 @RestController
-@RequestMapping(value = "/bills")
+@RequestMapping(value = "/sesion")
 public class ApiController {
+    
+     @Autowired
+        private Guard secGuard;
 
     private static int idBill = 1;
 
     public static final String HEROKU_LINK = "https://restapidianform.herokuapp.com/bill?";
-    @RequestMapping(method = RequestMethod.POST)
+        
+    @RequestMapping(method = RequestMethod.POST, path="/bills")
     public ResponseEntity<?> addOrder(@RequestBody Bill bill) {
         try {
             bill.setIvaPrice((bill.getPurchasePrice() * Bill.IVA_PERCENTAGE) / 100);
@@ -86,5 +93,16 @@ public class ApiController {
         }
 
     }
+    
+            
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> addSesion(@RequestBody RequestAction ra) throws co.edu.escuelaing.arem.dianfacturaelectronica.security.SecurityException {
+        System.out.println("entra");
+        secGuard.authenticate(ra);
+        return new ResponseEntity<> ("ok",HttpStatus.OK);
+    }
+
+    
+
 
 }
