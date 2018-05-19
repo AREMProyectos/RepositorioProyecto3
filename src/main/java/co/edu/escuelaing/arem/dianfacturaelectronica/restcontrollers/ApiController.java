@@ -97,7 +97,6 @@ public class ApiController {
             
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> addSesion(@RequestBody RequestAction ra) throws co.edu.escuelaing.arem.dianfacturaelectronica.security.SecurityException {
-        System.out.println("entra");
         secGuard.authenticate(ra);
         return new ResponseEntity<> ("ok",HttpStatus.OK);
     }

@@ -1,3 +1,15 @@
+var    hashCode = function(str){
+        var hash = 0;
+        if (str.length == 0) return hash;
+        for (i = 0; i < str.length; i++) {
+            char = str.charCodeAt(i);
+            hash = ((hash<<5)-hash)+char;
+            hash = hash & hash; // Convert to 32bit integer
+        }
+        return hash;
+    }
+
+
 var BillControllerModule = (function(){
 	
 	var sendInfo = function(){
@@ -30,8 +42,7 @@ var BillControllerModule = (function(){
 	}
 
 	var sendCredentials = function(){
-		var passwd = CryptoJS.AES.encrypt(document.getElementById('passwd').value, "drwQhwnzvdmi@x09");
-		alert(passwd);
+		var passwd = hashCode(document.getElementById('passwd').value);
 		axios.post('/sesion',{
 								"userName":document.getElementById('userName').value,
 								"passwd":passwd

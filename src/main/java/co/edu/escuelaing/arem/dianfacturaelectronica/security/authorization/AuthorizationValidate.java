@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.escuelaing.arem.dianfacturaelectronica.security.authentication;
+package co.edu.escuelaing.arem.dianfacturaelectronica.security.authorization;
 
 /**
  *
  * @author andres
  */
-public class authenticationValidate {
-   
-    authenticationValidate(){
-        
-    }
+public class AuthorizationValidate {
+    
 }

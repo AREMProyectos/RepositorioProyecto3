@@ -10,4 +10,5 @@ package co.edu.escuelaing.arem.dianfacturaelectronica.security;
  */
 public interface Guard {
     void authenticate(RequestAction ra) throws SecurityException;
+    void authorization(RequestAction ra) throws SecurityException;
 }

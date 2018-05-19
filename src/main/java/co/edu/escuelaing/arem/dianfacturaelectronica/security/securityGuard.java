@@ -5,6 +5,8 @@
  */
 package co.edu.escuelaing.arem.dianfacturaelectronica.security;
 
+import co.edu.escuelaing.arem.dianfacturaelectronica.security.authentication.AuthenticationValidate;
+import java.util.HashMap;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,12 +15,23 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class securityGuard implements Guard{
-
-
+    
+    
+    private AuthenticationValidate authentication=new AuthenticationValidate();
+    
+    public securityGuard(){
+    
+    }
     @Override
     public void authenticate(RequestAction ra) throws SecurityException {
-        System.out.println(ra.getPasswd());
-       
+       boolean resp =authentication.authenticate(ra);
+       if(resp)
+           authorization(ra);
+    }
+
+    @Override
+    public void authorization(RequestAction ra) throws SecurityException {
+        
     }
     
 }
