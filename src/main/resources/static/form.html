@@ -19,6 +19,7 @@
 
         <!-- Custom styles for this template -->
         <link href="css/one-page-wonder.min.css" rel="stylesheet">
+		<link href="css/util.css" rel="stylesheet">
 
     </head>
 
@@ -46,38 +47,58 @@
                 <div class="container" id="mainContainer">
                     <h1 id="tituloPrincipal"class="masthead-heading mb-0">Formulario Factura</h1>
                     <h2 id="instruccionesPagina"class="masthead-subheading mb-0">Ingrese los siguientes datos:</h2>
+					<br>
+					<br>
                     <form id="billForm">
-                        <div class="form-group">
-                            <label for="nameEmployee">Nombre del empleado</label>
-                            <input type="text" class="form-control" id="nameEmployee" placeholder="">
+                        <div class="form-group" style="margin: auto;">
+                            <label class="fs-30" for="nameEmployee">Nombre del empleado</label>
+                            <input type="text" class="form-control" id="nameEmployee" style="margin: auto;" placeholder="">
+							<br>
+							<br>
 							
-							<label for="idEmployee">Identificacion del empleado</label>
-                            <input type="number" class="form-control" id="idEmployee" placeholder="">
+							<label class="fs-30" for="idEmployee">Identificacion del empleado</label>
+                            <input type="number" class="form-control" id="idEmployee" style="margin: auto;" placeholder="">
+							<br>
+							<br>
 							
-							<label for="companysNit">Nit de la empresa</label>
-                            <input type="number" class="form-control" id="companysNit" placeholder="">
+							<label class="fs-30" for="companysNit">Nit de la empresa</label>
+                            <input type="number" class="form-control" id="companysNit" style="margin: auto;" placeholder="">
+							<br>
+							<br>
 							
-							<label for="companysPhone">Telefono de la empresa</label>
-                            <input type="number" class="form-control" id="companysPhone" placeholder="">
+							<label class="fs-30" for="companysPhone">Telefono de la empresa</label>
+                            <input type="number" class="form-control" id="companysPhone" style="margin: auto;" placeholder="">
+							<br>
+							<br>
 							
-							<label for="consumerName">Nombre del consumidor</label>
-                            <input type="text" class="form-control" id="consumerName" placeholder="">
+							<label class="fs-30" for="consumerName">Nombre del consumidor</label>
+                            <input type="text" class="form-control" id="consumerName" style="margin: auto;" placeholder="">
+							<br>
+							<br>
 							
-							<label for="consumerId">Identificacion del consumidor</label>
-                            <input type="number" class="form-control" id="consumerId" placeholder="">
+							<label class="fs-30" for="consumerId">Identificacion del consumidor</label>
+                            <input type="number" class="form-control" id="consumerId" style="margin: auto;" placeholder="">
+							<br>
+							<br>
 							
-							<label for="consumerPhone">Telefono del consumidor</label>
-                            <input type="number" class="form-control" id="consumerPhone" placeholder="">
+							<label class="fs-30" for="consumerPhone">Telefono del consumidor</label>
+                            <input type="number" class="form-control" id="consumerPhone" style="margin: auto;" placeholder="">
+							<br>
+							<br>
 							
-							<label for="consumerEmail">Correo electronico del consumidor</label>
-                            <input type="text" class="form-control" id="consumerEmail" placeholder="">
+							<label class="fs-30" for="consumerEmail">Correo electronico del consumidor</label>
+                            <input type="text" class="form-control" id="consumerEmail" style="margin: auto;" placeholder="">
+							<br>
+							<br>
 							
-							<label for="purchasePrice">Precio de la compra</label>
-                            <input type="number" class="form-control" id="purchasePrice" placeholder="">
+							<label class="fs-30" for="purchasePrice">Precio de la compra</label>
+                            <input type="number" class="form-control" id="purchasePrice" style="margin: auto;" placeholder="">
+							<br>
+							<br>
 							
                         </div>
                         
-                        <button type="submit" class="btn btn-primary" onclick="BillControllerModule.sendInfo();">Enviar</button>
+                        <button type="submit" class="btn btn-primary" style="font-size: 30px;" onclick="BillControllerModule.sendInfo();">Enviar</button>
                     </form>
 					<a class="navbar-brand" href="/bill.json" download="bill.json" id="botonDescarga" style="visibility:hidden">Download</a>
                     
