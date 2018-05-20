@@ -17,12 +17,12 @@ public class Bill {
     private int id;
     private String date;
     private String nameEmployee;
-    private int idEmployee;
-    private int companysNit;
-    private int companysPhone;
+    private long idEmployee;
+    private long companysNit;
+    private long companysPhone;
     private String consumerName;
-    private int consumerId;
-    private int consumerPhone;
+    private long consumerId;
+    private long consumerPhone;
     private String consumerEmail;
     private float purchasePrice;
     private float ivaPrice;
@@ -33,12 +33,12 @@ public class Bill {
     }
 
     public Bill(String nameEmployee,
-            int idEmployee,
-            int companysNit,
-            int companysPhone,
+            long idEmployee,
+            long companysNit,
+            long companysPhone,
             String consumerName,
-            int consumerId,
-            int consumerPhone,
+            long consumerId,
+            long consumerPhone,
             String consumerEmail,
             float purchasePrice) {
         this.date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
@@ -53,6 +53,14 @@ public class Bill {
         this.purchasePrice = purchasePrice;
         this.ivaPrice = (this.purchasePrice * IVA_PERCENTAGE) / 100;
         this.total = this.purchasePrice + this.ivaPrice;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDate() {
@@ -71,27 +79,27 @@ public class Bill {
         this.nameEmployee = nameEmployee;
     }
 
-    public int getIdEmployee() {
+    public long getIdEmployee() {
         return idEmployee;
     }
 
-    public void setIdEmployee(int idEmployee) {
+    public void setIdEmployee(long idEmployee) {
         this.idEmployee = idEmployee;
     }
 
-    public int getCompanysNit() {
+    public long getCompanysNit() {
         return companysNit;
     }
 
-    public void setCompanysNit(int companysNit) {
+    public void setCompanysNit(long companysNit) {
         this.companysNit = companysNit;
     }
 
-    public int getCompanysPhone() {
+    public long getCompanysPhone() {
         return companysPhone;
     }
 
-    public void setCompanysPhone(int companysPhone) {
+    public void setCompanysPhone(long companysPhone) {
         this.companysPhone = companysPhone;
     }
 
@@ -103,19 +111,19 @@ public class Bill {
         this.consumerName = consumerName;
     }
 
-    public int getConsumerId() {
+    public long getConsumerId() {
         return consumerId;
     }
 
-    public void setConsumerId(int consumerId) {
+    public void setConsumerId(long consumerId) {
         this.consumerId = consumerId;
     }
 
-    public int getConsumerPhone() {
+    public long getConsumerPhone() {
         return consumerPhone;
     }
 
-    public void setConsumerPhone(int consumerPhone) {
+    public void setConsumerPhone(long consumerPhone) {
         this.consumerPhone = consumerPhone;
     }
 
@@ -151,13 +159,7 @@ public class Bill {
         this.total = total;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+   
     
     
 
