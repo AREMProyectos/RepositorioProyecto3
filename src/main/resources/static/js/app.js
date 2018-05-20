@@ -9,6 +9,11 @@ var    hashCode = function(str){
         return hash;
     }
 
+var  Redirect = function(page){
+	if(page=="billGenerator")
+	location="form.html";	
+	}
+
 
 var BillControllerModule = (function(){
 	
@@ -47,13 +52,24 @@ var BillControllerModule = (function(){
 								"userName":document.getElementById('userName').value,
 								"passwd":passwd
 		})
-		.then(function(response){
+		.then(function(){
+			callback();
 			console.log("Response status: "+ response.status);
 		})
 		.catch(function(error){
 			console.log(error);
+			
 		});
-		
+	
+		var callback=function(){
+			axios.get('/sesion/type')
+			.then(function(response){
+				Redirect(response.data);
+			})
+			.catch(function(error){
+				console.log(error);
+			});
+		}
 	}
 
 	return {

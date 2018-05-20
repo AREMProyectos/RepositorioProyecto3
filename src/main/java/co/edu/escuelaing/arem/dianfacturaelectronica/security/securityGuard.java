@@ -6,6 +6,7 @@
 package co.edu.escuelaing.arem.dianfacturaelectronica.security;
 
 import co.edu.escuelaing.arem.dianfacturaelectronica.security.authentication.AuthenticationValidate;
+import co.edu.escuelaing.arem.dianfacturaelectronica.security.authorization.AuthorizationValidate;
 import java.util.HashMap;
 import org.springframework.stereotype.Service;
 
@@ -18,20 +19,26 @@ public class securityGuard implements Guard{
     
     
     private AuthenticationValidate authentication=new AuthenticationValidate();
+    private AuthorizationValidate authorization = new AuthorizationValidate();
+    RequestAction ra= null;
     
     public securityGuard(){
     
     }
+    
     @Override
-    public void authenticate(RequestAction ra) throws SecurityException {
-       boolean resp =authentication.authenticate(ra);
-       if(resp)
-           authorization(ra);
+    public String authenticate(RequestAction ra) throws SecurityException {
+        String permission=null;
+        boolean resp =authentication.authenticate(ra);
+        if(resp)
+            permission=authorization(ra);
+
+        return permission;
     }
 
     @Override
-    public void authorization(RequestAction ra) throws SecurityException {
-        
+    public String  authorization(RequestAction ra) throws SecurityException {
+        return authorization.getPermissions(ra);   
     }
     
 }

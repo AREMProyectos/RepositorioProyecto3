@@ -9,6 +9,6 @@ package co.edu.escuelaing.arem.dianfacturaelectronica.security;
  * @author monitor
  */
 public interface Guard {
-    void authenticate(RequestAction ra) throws SecurityException;
-    void authorization(RequestAction ra) throws SecurityException;
+    String authenticate(RequestAction ra) throws SecurityException;
+    String authorization(RequestAction ra) throws SecurityException;
 }

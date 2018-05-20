@@ -19,6 +19,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,9 @@ public class ApiController {
     
      @Autowired
         private Guard secGuard;
-
+        private String permission =null;
+     
+     
     private static int idBill = 1;
 
     public static final String HEROKU_LINK = "https://restapidianform.herokuapp.com/bill?";
@@ -97,10 +100,15 @@ public class ApiController {
             
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> addSesion(@RequestBody RequestAction ra) throws co.edu.escuelaing.arem.dianfacturaelectronica.security.SecurityException {
-        secGuard.authenticate(ra);
-        return new ResponseEntity<> ("ok",HttpStatus.OK);
+        permission=secGuard.authenticate(ra);
+        return new ResponseEntity<> (HttpStatus.OK);
     }
-
+    
+    @RequestMapping(method = RequestMethod.GET, path="/type")
+    public ResponseEntity<?> getTypeSesion(){
+        return new ResponseEntity<> (permission,HttpStatus.OK);
+    }
+    
     
 
 
